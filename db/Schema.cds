@@ -15,6 +15,10 @@ entity USERS {
       EMAIL            : String(100);
       FECHA_NACIMIENTO : Date;
       CELULAR          : Integer;
+      ESTADO           : String(20) default 'Activo';
+      INICONTRATO      : Date;
+      FINCONTRATO      : Date default null;
+      ANTIGUEDAD       : Integer;
       CREATEDAT        : Date @cds.on.insert: $now;
 };
 
