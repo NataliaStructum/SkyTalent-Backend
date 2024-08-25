@@ -29,7 +29,7 @@ entity AUTORIDAD {
 entity FUNCION {
     key ID          : UUID;
         CARGO       : Association to CARGO; 
-        TIPO        : String(20);
+        TIPO        : String(50);
         DESCRIPCION : String(500);
 }
 
@@ -66,8 +66,7 @@ entity RELACIONES {
 entity HABILIDADES_CONOCIMIENTOS {
     key ID                : UUID;
         CARGO             : Association to CARGO; 
-        TIPO              : String(20);
-        TIPO_CONOCIMIENTO : String(50) default null;
-        DESCRIPCION       : String(100);
+        TIPO              : String(50); //HABILIDADES o los tipos de conocimientos CALIDAD-SST-AMBIENTA
+        DESCRIPCION       : String(400);
 }
 
