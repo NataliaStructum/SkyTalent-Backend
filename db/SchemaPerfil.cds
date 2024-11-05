@@ -4,7 +4,7 @@ using { HABILIDADES_CONOCIMIENTOS } from './SchemaCargo';
 entity HISTORIALMODIFICACION_PERFIL {
     Key ID             : UUID;
         PERFIL         : Association to PERFIL;
-        NO_REVISION    : Integer;
+        //NO_REVISION    : Integer;
         FECHA_REVISION : Timestamp @cds.on.insert: $now;
         MOTIVO         : String(500);
 }
@@ -15,6 +15,8 @@ entity EXPERIENCIA_PERFIL {
         AREA   : String(300);
         TIEMPO : Decimal; 
         UNIDAD : String(20);
+
+        createdAt : Timestamp @cds.on.insert: $now; 
 }
 
 entity FORMACION {
@@ -29,7 +31,7 @@ entity FORMACION {
 
 entity PROCEDIMIENTOS {
     key ID           : UUID;
-        NOMBRE       : String(50);
+        NOMBRE       : String(100);
         DESCRIPCION  : String(500) default null;
 }
 

@@ -23,20 +23,22 @@ entity USERS {
       //createdBy        : User      @cds.on.insert : $user;
 };
 
-entity CARGO : managed {
+entity CARGO {
   Key ID                : UUID;
-      //ELABORADO_POR     : Association to USERS;
-      //ELABORADO_POR     : User      @cds.on.insert : $user;
       APROBADO_POR      : Association to USERS;
       NOMBRE_CARGO      : String(50);
       OBJETIVO          : String(500);
       NOMBRE_CARGO_JEFE : String(50);
-      NO_REVISION       : Integer default 1;
+      CARGO_JEFE        : Association to CARGO;
+      //NO_REVISION       : Integer default 1;
       //UPDATEAT          : Timestamp @cds.on.insert : $now  @cds.on.update : $now;
 
       //Alcance
       PRESUPUESTO       : Decimal;
       MONEDA            : String(10);
+
+      createdBy         : Association to USERS;
+      createdAt         : Timestamp @cds.on.insert: $now;
 }
 
 entity PROCESOS {
@@ -52,9 +54,10 @@ entity PERFIL {
       CARGO            : Association to CARGO; 
       PROCESO          : Association to PROCESOS; 
       NIVELACADEMICO   : String(20);
-      DESCRIPCIONNIVEL : String(200);
-      UPDATEAT         : Timestamp @cds.on.insert : $now  @cds.on.update : $now;
-      UPDATEBY         : Association to USERS;
+      DESCRIPCIONNIVEL : String(300);
+
+      createdBy         : Association to USERS;
+      createdAt         : Timestamp @cds.on.insert: $now;
 }
 
 
