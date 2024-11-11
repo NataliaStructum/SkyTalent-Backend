@@ -1,4 +1,4 @@
-using { USERS } from '../db/Schema';
+using { USERS, CARGO,PROCESOS, PERFIL } from '../db/Schema';
 
 entity VERUSER as select 
     key ID,
@@ -19,3 +19,24 @@ entity VERUSER as select
         from USERS;
 
         //Falta mostrar creado por y cuando
+
+entity VERPERFIL as select 
+       key p.ID,
+       u.NOMBRE as colaborador,
+	   u.EMAIL as emailColaborador,
+	   c.NOMBRE_CARGO as cargo,
+	   c.OBJETIVO as objCargo, 
+	   pr.NOMBRE as proceso,
+	   jefe.NOMBRE as jefePr,
+	   jefe.EMAIL as jefePrEmail,
+	   p.NIVELACADEMICO,
+	   p.DESCRIPCIONNIVEL,
+	   us.NOMBRE as createdBy,
+	   us.EMAIL as createdByEmail,
+	   p.createdAt
+from PERFIL as p
+LEFT JOIN CARGO as c on p.CARGO.ID = c.ID
+LEFT JOIN USERS as u on p.USUARIO.ID = u.ID
+LEFT JOIN USERS as us on p.createdBy.ID = us.ID
+LEFT JOIN PROCESOS as pr on p.PROCESO.ID = pr.ID
+LEFT JOIN USERS as jefe on pr.JEFE.ID = jefe.ID;

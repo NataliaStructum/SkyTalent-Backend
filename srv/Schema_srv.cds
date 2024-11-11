@@ -17,7 +17,7 @@ using { HISTORIALMODIFICACION_PERFIL,
         PROCEDIMIENTOS,
         FORMACIONGENERAL} from '../db/SchemaPerfil';
 
-using { VERUSER } from '../db/ViewSchema';
+using { VERUSER, VERPERFIL } from '../db/ViewSchema';
 
 service skyTalentService{
 
@@ -58,6 +58,9 @@ service skyTalentService{
  entity FormacionPerfil as projection on FORMACION;
  entity Procedimientos as projection on PROCEDIMIENTOS;
  entity FormacionGeneralPerfil as projection on FORMACIONGENERAL;
+
+  @readonly
+ entity VerPerfil as projection on VERPERFIL;
 }
 
 
