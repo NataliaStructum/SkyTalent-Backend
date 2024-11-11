@@ -1,5 +1,7 @@
 using { managed } from '@sap/cds/common';
 
+using { HISTORIALMODIFICACION_CARGO, ALCANCE_PERSONALDIRECTO, ALCANCE_PERSONALINDIRECTO, AUTORIDAD, FUNCION, NIVELEDUCATIVO, EXPERIENCIA_CARGO, INDICADORES,RELACIONES, HABILIDADES_CONOCIMIENTOS } from './SchemaCargo';
+
 
 entity USERS {
   key ID               : UUID;
@@ -39,6 +41,17 @@ entity CARGO {
 
       createdBy         : Association to USERS;
       createdAt         : Timestamp @cds.on.insert: $now;
+
+      historial         : Composition of many HISTORIALMODIFICACION_CARGO on historial.CARGO = $self;
+      personalDirecto   : Composition of many ALCANCE_PERSONALDIRECTO on personalDirecto.CARGO = $self;
+      personalIndirecto : Composition of many ALCANCE_PERSONALINDIRECTO on personalIndirecto.CARGO = $self;
+      autoridad         : Composition of many AUTORIDAD on autoridad.CARGO = $self;
+      funcion           : Composition of many FUNCION on funcion.CARGO = $self;
+      educativo         : Composition of many NIVELEDUCATIVO on educativo.CARGO = $self;
+      experiencia       : Composition of many EXPERIENCIA_CARGO on experiencia.CARGO = $self;
+      indicadores       : Composition of many INDICADORES on indicadores.CARGO = $self;
+      relaciones        : Composition of many RELACIONES on relaciones.CARGO = $self;
+      conocimientos     : Composition of many HABILIDADES_CONOCIMIENTOS on conocimientos.CARGO = $self;
 }
 
 entity PROCESOS {
