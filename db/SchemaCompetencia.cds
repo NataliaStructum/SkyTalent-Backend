@@ -28,13 +28,13 @@ entity INDUCCIONES{
 entity CAPACITACIONES {
     key ID          : UUID;
         PERFIL      : Association to PERFIL;
-        FECHA       : Date; 
+        FECHA       : Date;
+        METODO      : String(20); //presencial-virtual-hibrida
         LUGAR       : String(300);
         CAPACITADOR : String(100);
         TIPO        : String(50); //CALIDAD-SST-AMBIENTAL
         TEMA        : String(300);
         COSTO       : Integer;
-        APROBO      : Boolean;
         EVIDENCIA   : String;
         //firma empleado
 }
