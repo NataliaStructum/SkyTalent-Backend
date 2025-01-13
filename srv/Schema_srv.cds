@@ -21,6 +21,8 @@ using { INDUCCIONES, CAPACITACIONES } from '../db/SchemaCompetencia';
 
 using { VERUSER, VERPERFIL } from '../db/ViewSchema';
 
+using {CLASIFICACION, CATEGORIAS, PUNTOS, ACTIVIDADES} from '../db/SchemaPuntos';
+
 service skyTalentService{
 
  @cds.redirection.target
@@ -66,6 +68,12 @@ service skyTalentService{
  //--------------- Competencia ----------------------------
  entity Inducciones as projection on INDUCCIONES;
  entity Capacitaciones as projection on CAPACITACIONES;
+
+ //-------------- Puntos -----------------------------
+ entity Categorias as projection on CATEGORIAS;
+ entity Clasificacion as projection on CLASIFICACION;
+ entity Actividades as projection on ACTIVIDADES;
+ entity Puntos as projection on PUNTOS;
 }
 
 
