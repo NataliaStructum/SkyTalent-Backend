@@ -28,6 +28,7 @@ entity PUNTOS {
         DESCRIPCION   : String(500);
         CATEGORIA     : Association to CATEGORIAS;
         FECHA         : Date;
+        PUNTOS        : Integer;
         ESFUERZO      : Decimal; //horas semanales
         DURACION      : Decimal; //Numero de semanas
         TIPO          : String(50); //Asistencia, Certificación, No aplica, Ambas

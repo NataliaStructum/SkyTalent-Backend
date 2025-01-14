@@ -23,6 +23,9 @@ using { VERUSER, VERPERFIL } from '../db/ViewSchema';
 
 using {CLASIFICACION, CATEGORIAS, PUNTOS, ACTIVIDADES} from '../db/SchemaPuntos';
 
+using { VERXMES } from '../db/ViewPuntos';
+
+
 service skyTalentService{
 
  @cds.redirection.target
@@ -74,6 +77,9 @@ service skyTalentService{
  entity Clasificacion as projection on CLASIFICACION;
  entity Actividades as projection on ACTIVIDADES;
  entity Puntos as projection on PUNTOS;
+
+ @readonly
+ entity VerXMes as projection on VERXMES;
 }
 
 
