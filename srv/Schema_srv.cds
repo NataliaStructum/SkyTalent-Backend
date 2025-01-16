@@ -23,7 +23,7 @@ using { VERUSER, VERPERFIL } from '../db/ViewSchema';
 
 using {CLASIFICACION, CATEGORIAS, PUNTOS, ACTIVIDADES} from '../db/SchemaPuntos';
 
-using { VERXMES } from '../db/ViewPuntos';
+using { VERXMES, VERXYEAR, VERXACT } from '../db/ViewPuntos';
 
 
 service skyTalentService{
@@ -80,6 +80,10 @@ service skyTalentService{
 
  @readonly
  entity VerXMes as projection on VERXMES;
+ @readonly
+ entity VerXYear as projection on VERXYEAR;
+ @readonly
+ entity VerXAct as projection on VERXACT;
 }
 
 

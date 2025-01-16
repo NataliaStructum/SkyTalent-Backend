@@ -1,9 +1,9 @@
-using {PUNTOS} from '../db/SchemaPuntos';
+using {PUNTOS, ACTIVIDADES} from '../db/SchemaPuntos';
 
 entity VERXMES as select
     key ID,
     USER.ID as userId,
-    YEAR(FECHA) AS anio: Integer,
+    YEAR(FECHA) AS anio: String,
     CASE 
         WHEN MONTH(FECHA) = 1 THEN '01-Ene'
         WHEN MONTH(FECHA) = 2 THEN '02-Feb'
@@ -20,5 +20,34 @@ entity VERXMES as select
     END AS mes: Integer,
     SUM(PUNTOS) AS total_puntos: Integer
 FROM PUNTOS
-WHERE ESTADO IN ('Aprobado') AND YEAR(FECHA) = YEAR(CURRENT_DATE)
+WHERE ESTADO IN ('Aprobado')
 GROUP BY ID, USER.ID, YEAR(FECHA), MONTH(FECHA);
+
+//AND YEAR(FECHA) = YEAR(CURRENT_DATE)
+
+entity VERXYEAR as select
+    key USER.ID as userId,
+    key YEAR(FECHA) AS anio: String,
+    SUM(PUNTOS) AS total_puntos: Integer
+FROM PUNTOS
+WHERE ESTADO IN ('Aprobado')
+GROUP BY USER.ID, YEAR(FECHA);
+
+entity VERXACT as select 
+	USER.ID as userId,
+	YEAR(FECHA) AS anio: String,
+	p.ACTIVIDAD.ID as actId,
+    a.DESCRIPCION as actDes,
+	p.CLASIFICACION.ID as clasId,
+    p.CLASIFICACION.DESCRIPCION as clasDes,
+	SUM(p.PUNTOS) AS total_puntos : Integer
+from PUNTOS as p
+LEFT JOIN ACTIVIDADES as a on p.ACTIVIDAD.ID = a.ID 
+WHERE 
+    ESTADO IN ('Aprobado')
+GROUP BY USER.ID, 
+    YEAR(FECHA), 
+    ACTIVIDAD.ID,
+    a.DESCRIPCION,
+    p.CLASIFICACION.ID,
+    p.CLASIFICACION.DESCRIPCION;
