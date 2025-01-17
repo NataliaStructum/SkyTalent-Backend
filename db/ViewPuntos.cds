@@ -33,20 +33,20 @@ FROM PUNTOS
 WHERE ESTADO IN ('Aprobado')
 GROUP BY USER.ID, YEAR(FECHA);
 
-entity VERXACT as select 
+entity VERXACT as select
 	USER.ID as userId,
 	YEAR(FECHA) AS anio: String,
 	p.ACTIVIDAD.ID as actId,
     a.DESCRIPCION as actDes,
 	p.CLASIFICACION.ID as clasId,
     p.CLASIFICACION.DESCRIPCION as clasDes,
+    p.ESTADO,
 	SUM(p.PUNTOS) AS total_puntos : Integer
 from PUNTOS as p
 LEFT JOIN ACTIVIDADES as a on p.ACTIVIDAD.ID = a.ID 
-WHERE 
-    ESTADO IN ('Aprobado')
 GROUP BY USER.ID, 
     YEAR(FECHA), 
+    p.ESTADO,
     ACTIVIDAD.ID,
     a.DESCRIPCION,
     p.CLASIFICACION.ID,
