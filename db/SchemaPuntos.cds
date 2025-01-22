@@ -36,6 +36,7 @@ entity PUNTOS {
         CLASIFICACION : Association to CLASIFICACION;
         EVIDENCIA     : LargeString;
         ESTADO        : String(50) default 'Enviado'; //Aprobado, No aprobado, Enviado
+        COMENTARIOS   : String(300);
         
         createdAt   : Timestamp @cds.on.insert: $now;    
 }
