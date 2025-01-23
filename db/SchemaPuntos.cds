@@ -38,5 +38,6 @@ entity PUNTOS {
         ESTADO        : String(50) default 'Enviado'; //Aprobado, No aprobado, Enviado
         COMENTARIOS   : String(300);
         
-        createdAt   : Timestamp @cds.on.insert: $now;    
+        createdAt   : Timestamp @cds.on.insert: $now; 
+        updateAt    : Timestamp @cds.on.insert : $now  @cds.on.update : $now;   
 }
