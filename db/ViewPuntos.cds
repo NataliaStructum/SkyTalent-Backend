@@ -51,3 +51,52 @@ GROUP BY USER.ID,
     a.DESCRIPCION,
     p.CLASIFICACION.ID,
     p.CLASIFICACION.DESCRIPCION;
+
+
+/*listado de total de puntos por usuario y por año*/
+entity VERXUSERXYEAR as select
+	p.USER.ID,
+    p.USER.NOMBRE,
+    p.USER.CEDULA,
+	YEAR(p.FECHA) AS anio: String, 
+	SUM(p.PUNTOS) AS total_puntos: Integer 
+from PUNTOS as p
+WHERE ESTADO IN ('Aprobado')
+GROUP BY USER.ID, USER.NOMBRE, USER.CEDULA, YEAR(FECHA);
+
+/*total de puntos aprobados en el año*/
+entity VERXYEARAPR as select
+	YEAR(p.FECHA) AS anio: String, 
+	SUM(p.PUNTOS) AS total_puntos: Integer 
+from PUNTOS as p
+WHERE ESTADO IN ('Aprobado')
+GROUP BY YEAR(FECHA);
+
+/*total de puntos no aprobados en el año*/
+entity VERXYEARNAPR as select
+	YEAR(p.FECHA) AS anio: String, 
+	SUM(p.PUNTOS) AS total_puntos: Integer 
+from PUNTOS as p
+WHERE ESTADO IN ('No aprobado')
+GROUP BY YEAR(FECHA);
+
+/*listado de total de puntos por clasificacion y por año*/
+entity VERXCLASXYEAR as select
+	p.CLASIFICACION.ID,
+    p.CLASIFICACION.DESCRIPCION,
+	YEAR(p.FECHA) AS anio: String,
+	SUM(p.PUNTOS) AS total_puntos: Integer 
+from PUNTOS as p
+WHERE ESTADO IN ('Aprobado')
+GROUP BY CLASIFICACION.ID, CLASIFICACION.DESCRIPCION, YEAR(FECHA);
+
+/*listado de total de puntos por categoria y por año*/
+entity VERXCATXYEAR as select
+	p.CATEGORIA.ID,
+    p.CATEGORIA.DESCRIPCION,
+	YEAR(p.FECHA) AS anio: String,
+	SUM(p.PUNTOS) AS total_puntos: Integer
+from PUNTOS as p
+WHERE ESTADO IN ('Aprobado')
+GROUP BY CATEGORIA.ID, CATEGORIA.DESCRIPCION, YEAR(FECHA);
+

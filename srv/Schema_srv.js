@@ -5,6 +5,15 @@ module.exports = async (srv) => {
 
     let db = cds.connect.to(srv)
 
+    /*srv.on('submitOrder', req =>{
+        let data = req.data.quantity;
+        if(req.user.is('Manager')){
+            data = 0;
+        }
+        console.log(data);
+        return data;
+    })*/
+
     srv.after('CREATE', ['cargos','PersonalDirectoCargo','PersonalIndirectoCargo','AutoridadCargo', 'FuncionCargo', 'RelacionesCargo', 'NivelEducativoCargo', 'ExperienciaCargo', 'HabilidadesConocimientos','IndicadoresCargo'], async (data, req) => {
         await recordHistory(data, req, 'crear');
     });

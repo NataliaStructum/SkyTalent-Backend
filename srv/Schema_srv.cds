@@ -23,7 +23,7 @@ using { VERUSER, VERPERFIL } from '../db/ViewSchema';
 
 using {CLASIFICACION, CATEGORIAS, PUNTOS, ACTIVIDADES} from '../db/SchemaPuntos';
 
-using { VERXMES, VERXYEAR, VERXACT } from '../db/ViewPuntos';
+using { VERXMES, VERXYEAR, VERXACT, VERXUSERXYEAR, VERXYEARAPR, VERXYEARNAPR, VERXCLASXYEAR, VERXCATXYEAR } from '../db/ViewPuntos';
 
 
 service skyTalentService{
@@ -84,6 +84,25 @@ service skyTalentService{
  entity VerXYear as projection on VERXYEAR;
  @readonly
  entity VerXAct as projection on VERXACT;
+ @readonly
+ entity VerXUserXYear as projection on VERXUSERXYEAR;
+ @readonly
+ entity VerXYearXApr as projection on VERXYEARAPR;
+ @readonly
+ entity VerXYearXNApr as projection on VERXYEARNAPR;
+ @readonly
+ entity VerXClasXYear as projection on VERXCLASXYEAR;
+ @readonly
+ entity VerXCatXYear as projection on VERXCATXYEAR;
+
+ /*type result{
+        todos           : Integer;
+        enviado         : Integer;
+        apro            : Integer;
+        noapro          : Integer;
+    }
+
+ function getEstAdmin( start:String, end:String ) returns result ;*/
 }
 
 
