@@ -1,7 +1,7 @@
 using { managed } from '@sap/cds/common';
 
 using { HISTORIALMODIFICACION_CARGO, ALCANCE_PERSONALDIRECTO, ALCANCE_PERSONALINDIRECTO, AUTORIDAD, FUNCION, NIVELEDUCATIVO, EXPERIENCIA_CARGO, INDICADORES,RELACIONES, HABILIDADES_CONOCIMIENTOS } from './SchemaCargo';
-
+using { HISTORIALMODIFICACION_PERFIL, EXPERIENCIA_PERFIL, FORMACION, FORMACIONGENERAL} from './SchemaPerfil';
 
 entity USERS {
   key ID               : UUID;
@@ -71,6 +71,11 @@ entity PERFIL {
 
       createdBy         : Association to USERS;
       createdAt         : Timestamp @cds.on.insert: $now;
+
+      historial         : Composition of many HISTORIALMODIFICACION_PERFIL on historial.PERFIL = $self;
+      experiencia       : Composition of many EXPERIENCIA_PERFIL on experiencia.PERFIL = $self;
+      formacion         : Composition of many FORMACION on formacion.PERFIL = $self;
+      formaciongeneral  : Composition of many FORMACIONGENERAL on formaciongeneral.PERFIL = $self;
 }
 
 
