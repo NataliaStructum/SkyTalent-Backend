@@ -5,16 +5,16 @@ using { HISTORIALMODIFICACION_PERFIL, EXPERIENCIA_PERFIL, FORMACION, FORMACIONGE
 
 entity USERS {
   key ID               : UUID;
-      CEDULA           : String(50);
+      CEDULA           : String(10);
       NOMBRE           : String(50);
       DIRECCION        : String(100);
       MUNICIPIO        : String(80);
       EMAIL            : String(100);
       FECHA_NACIMIENTO : Date;
-      CELULAR          : String(15);
+      CELULAR          : String(50);
       ESTADO           : String(20) default 'Activo';
-      INICONTRATO      : Date default $now;
-      FINCONTRATO      : Date default null;
+      INICIO           : Date default $now;
+      RETIRO           : Date default null;
       createdAt        : Timestamp @cds.on.insert: $now;
 
       //ANTIGUEDADA      : Integer;
