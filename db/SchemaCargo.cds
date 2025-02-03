@@ -51,11 +51,11 @@ entity NIVELEDUCATIVO {
 }
 
 entity EXPERIENCIA_CARGO {
-    key ID     : UUID;
-        CARGO  : Association to CARGO; 
-        AREA   : String(200);
-        TIEMPO : Decimal; 
-        UNIDAD : String(20);
+    key ID          : UUID;
+        CARGO       : Association to CARGO; 
+        AREA        : String(200);
+        TIEMPOAÑOS  : Integer; 
+        TIEMPOMESES : Integer; 
 
         createdAt : Timestamp @cds.on.insert: $now;
 }
