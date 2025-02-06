@@ -10,6 +10,7 @@ entity INDUCCIONES{
         PROCESO           : Association to PROCESOS;
         TEMA              : String(300);
         SOPORTES          : many String;
+        TIPO              : String(20); //Inducción- Reinducción
         METODO            : String(20); //presencial-virtual-hibrida
         TIEMPOH           : Integer;
         CAPACITADOR_CARGO : Association to CARGO;
