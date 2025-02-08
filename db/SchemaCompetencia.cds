@@ -1,4 +1,5 @@
 using { PROCESOS, CARGO, PERFIL, USERS } from './Schema';
+using { FORMACION, FORMACIONGENERAL } from './SchemaPerfil';
 
 //mostrar el proceso del cargo
 //mostrar la fecha de ingreso de la info basica del usuario
@@ -27,16 +28,19 @@ entity INDUCCIONES{
 //los usuarios pueden agregar capacitaciones y los admin 
 //estado? union con programa puntos? 
 entity CAPACITACIONES {
-    key ID          : UUID;
-        PERFIL      : Association to PERFIL;
-        FECHA       : Date;
-        METODO      : String(20); //presencial-virtual-hibrida
-        LUGAR       : String(300);
-        CAPACITADOR : String(100);
-        TIPO        : String(50); //CALIDAD-SST-AMBIENTAL
-        TEMA        : String(300);
-        COSTO       : Integer;
-        EVIDENCIA   : String;
+    key ID                : UUID;
+        PERFIL            : Association to PERFIL;
+        //FECHA           : Date;
+        FECHA_MAXIMA      : Date default null;
+        FORMACION         : Association to FORMACION;
+        FORMACION_GENERAL : Association to FORMACIONGENERAL;
+        METODO            : String(20); //presencial-virtual-hibrida
+        LUGAR             : String(300);
+        CAPACITADOR       : String(100);
+        TIPO              : String(50); //CALIDAD-SST-AMBIENTAL
+        TEMA              : String(300);
+        COSTO             : Integer;
+        EVIDENCIA         : String;
         //firma empleado
 }
 
