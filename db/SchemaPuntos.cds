@@ -21,6 +21,12 @@ entity CATEGORIAS {
         DESCRIPCION : String(300);    
 }
 
+entity REGLAS {
+    key ID          : UUID;
+        DESCRIPCION : String(100);
+        ACTIVA      : Boolean;     
+}
+
 entity PUNTOS {
     key ID            : UUID;
         USER          : Association to USERS;
