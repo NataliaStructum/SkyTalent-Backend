@@ -1,7 +1,6 @@
 using {PUNTOS, ACTIVIDADES} from '../db/SchemaPuntos';
 
 entity VERXMES as select
-    key ID,
     USER.ID as userId,
     YEAR(FECHA) AS anio: String,
     CASE 
@@ -21,7 +20,7 @@ entity VERXMES as select
     SUM(PUNTOS) AS total_puntos: Integer
 FROM PUNTOS
 WHERE ESTADO IN ('Aprobado')
-GROUP BY ID, USER.ID, YEAR(FECHA), MONTH(FECHA);
+GROUP BY USER.ID, YEAR(FECHA), MONTH(FECHA);
 
 //AND YEAR(FECHA) = YEAR(CURRENT_DATE)
 
